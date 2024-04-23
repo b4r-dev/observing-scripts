@@ -1,0 +1,20 @@
+#ObservingScript -Name  "/home/tescam/b4r/ot/takekoshi/b4r_SciencePs_Borisov_spec02_v01.scr" -Author "Tatsuya Takekoshi" -Date "Fri Sep 28 17:54:55 UTC 2018"
+Dcs Dcs;  Dcs  -SubObsMode 0;Shmem  -Backend null -Receiver null
+Telescope Telescope;  Telescope  -Point Point
+ProposalInfo Dcs;  Dcs  -ProjectId 2019S1B4RCommissioning
+SourceEphemeris Source;  Source  -DecProperMotionCor 0 -EphemerisTrackOn 1 -GoToZenith 1 -RaProperMotionCor 0 -SourceName Borisov
+B4r -If2Freq[0]  8.1 -If2Freq[1] 8.1 -LineFreq[0] 137 -LoAttenuation 2 -BiasVoltage 3 -FreqModulationFilename null
+B4rBackend -AcquireMode  Spec
+LmtTpm -IncludeSignal  1
+Sky Sky;  Sky  -AzOff[0] 0.000000 -AzOff[1] 0.050000 -BOff[0] 0.0 -BOff[1] 0.0 -DecOff[0] 00:00:00.0 -DecOff[1] 00:00:00.0 -ElOff[1] 0.000000 -LOff[0] 0.0 -LOff[1] 0.0 -Position Ref -RaOff[0] 00:00:00.00 -RaOff[1] 00:00:00.00 -RaOffsetSys Sky
+Loop -loop_name  Loop -loop_repeat 1 -loop_when EndOfLoop
+ObsGoal Dcs;  Dcs  -ObsGoal Calibration
+Cal -TCal  10 -Blank NO -CalMode Astro
+ObsGoal Dcs;  Dcs  -ObsGoal SciencePs
+Ps -TMain  10 -TRef 10 -NSamp 1 -NumRepeats 30 -NumScans 1 -Mode Ps -RefSwitch RefSame
+RsyncLmtTpm ShellCmd;  ShellCmd  -ShellCmd ""rsh dcs-iso ocs3/bin/py/lmtrsync.py --src /data_lmt/lmttpm --dst merlot-iso:/data_lmt/""
+RsyncB4r ShellCmd;  ShellCmd  -ShellCmd ""rsh dcs-iso ocs3/bin/py/lmtrsync.py --wildcard --src /data_lmt/lmttpm/lmttpm_b4r --dst lmtmc@b4r:/export/log/lmttpm/""
+endLoop
+Sky Sky;  Sky  -AzOff[0] 0.000000 -AzOff[1] 0.000000 -BOff[0] 0.0 -BOff[1] 0.0 -DecOff[0] 00:00:00.0 -DecOff[1] 00:00:00.0 -ElOff[0] 0.000000 -ElOff[1] 0.000000 -LOff[0] 0.0 -LOff[1] 0.0 -Position Ref -RaOff[0] 00:00:00.00 -RaOff[1] 00:00:00.00 -RaOffsetSys Sky
+RsyncLmtTpm ShellCmd;  ShellCmd  -ShellCmd ""rsh dcs-iso ocs3/bin/py/lmtrsync.py --src /data_lmt/lmttpm --dst merlot-iso:/data_lmt/""
+RsyncB4r ShellCmd;  ShellCmd  -ShellCmd ""rsh dcs-iso ocs3/bin/py/lmtrsync.py --wildcard --src /data_lmt/lmttpm/lmttpm_b4r --dst lmtmc@b4r:/export/log/lmttpm/""

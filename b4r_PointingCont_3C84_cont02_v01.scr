@@ -1,0 +1,16 @@
+#ObservingScript -Name  "/home/tescam/b4r/ot/takekoshi/b4r_PointingCont_3C84_cont02_v01.scr" -Author "Tatsuya Takekoshi" -Date "Thu Nov 14 11:04:57 CST 2019"
+Dcs Dcs;  Dcs  -SubObsMode 0;Shmem  -Backend null -Receiver null
+Telescope Telescope;  Telescope  -Point Point
+ProposalInfo Dcs;  Dcs  -ProjectId 2019S1B4RCommissioning
+Source Source;  Source  -BaselineList [] -CoordSys Eq -DecProperMotionCor 0 -Dec[0] +41:30:42.103 -Dec[1] +41:30:42.103 -EphemerisTrackOn 0 -Epoch 2000 -GoToZenith 1 -LineList [] -Planet None -RaProperMotionCor 0 -Ra[0] 03:19:48.1601 -Ra[1] 03:19:48.1601 -SourceName 3C84 -VelSys Lsr -Vmag 0.0
+B4r -If2Freq[0]  8.1 -If2Freq[1] 8.1 -LineFreq[0] 137.0 -LoAttenuation 2 -BiasVoltage 3 -FreqModulationFilename null
+B4rBackend -AcquireMode  Cont
+LmtTpm -IncludeSignal  1
+Sky Sky;  Sky  -AzOff[0] 0.000000 -AzOff[1] 0.05 -BOff[0] 0.0 -BOff[1] 0.0 -DecOff[0] 00:00:00.0 -DecOff[1] 00:00:00.0 -ElOff[0] 0.000000 -ElOff[1] 0.000000 -LOff[0] 0.0 -LOff[1] 0.0 -Position Ref -RaOff[0] 00:00:00.00 -RaOff[1] 00:00:00.00 -RaOffsetSys Sky
+ObsGoal Dcs;  Dcs  -ObsGoal Calibration
+Cal -TCal  10 -Blank NO -CalMode Astro
+ObsGoal Dcs;  Dcs  -ObsGoal PointingCont
+Map -NumScans  0 -ExecMode 0 -HoldDuringTurns 0 -NumRepeats 1 -MapMotion Continuous -MapCoord Az -ScanAngle 0.0 -NumPass 1 -TSamp 0.1 -TRef 0 -HPBW 10 -XLength 60 -YLength 60 -XOffset 0.0 -YOffset 0.0 -XStep 0.3 -YStep 0.3 -XRamp 0.0 -YRamp 0.0 -RowsPerScan 1000 -ScansPerCal 0 -ScansToSkip 0 -TCal 0.0
+Sky Sky;  Sky  -AzOff[0] 0.000000 -AzOff[1] 0.000000 -BOff[0] 0.0 -BOff[1] 0.0 -DecOff[0] 00:00:00.0 -DecOff[1] 00:00:00.0 -ElOff[0] 0.000000 -ElOff[1] 0.000000 -LOff[0] 0.0 -LOff[1] 0.0 -Position Ref -RaOff[0] 00:00:00.00 -RaOff[1] 00:00:00.00 -RaOffsetSys Sky
+RsyncLmtTpm ShellCmd;  ShellCmd  -ShellCmd ""rsh dcs-iso ocs3/bin/py/lmtrsync.py --src /data_lmt/lmttpm --dst merlot-iso:/data_lmt/""
+RsyncB4r ShellCmd;  ShellCmd  -ShellCmd ""rsh dcs-iso ocs3/bin/py/lmtrsync.py --wildcard --src /data_lmt/lmttpm/lmttpm_b4r --dst lmtmc@b4r:/export/log/lmttpm/""
