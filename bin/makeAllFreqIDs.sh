@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 file_freq_set='catalog/B4R_frequency_settings.txt'
 
