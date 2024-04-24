@@ -15,5 +15,4 @@ sh makeAllFreqIDs.sh templates/b4r_PointingLine_OriKL_spec02_v04.scr &
 sh makeAllFreqIDs.sh templates/b4r_SciencePs_Borisov_spec02_v01.scr &
 sh makeAllFreqIDs.sh templates/b4r_SciencePs_OriKL_spec02_v01.scr &
 sh makeAllFreqIDs.sh templates/b4r_FocusZ_OriKL_spec02_v01.scr &
-sh makeAllFreqIDs.sh templates/b4r_FocusZ_OriKL_spec02_v02.scr &
 sh makeAllFreqIDs.sh templates/b4r_Astigmatism_OriKL_spec02_v01.scr &
