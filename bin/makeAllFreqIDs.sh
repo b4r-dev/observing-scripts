@@ -9,7 +9,7 @@ for scr in $@; do
     mkdir -p ${make_dir}
     chmod 770 ${make_dir}
 
-    cat $file_freq_set | grep -v '^#.*' | while read freqID line_freq IF_freq comments; do 
+    cat $file_freq_set | grep -v '^#.*' | while read freqID line_freq IF_freq comments; do
         freqID2=`printf "%02d" $freqID`
         printf "makeing for freqID %s " $freqID2
         printf "line %.1f GHz " $line_freq
@@ -31,8 +31,8 @@ for scr in $@; do
         { print $0 }
         ' > $new_scr
     done
-    
- done 
+
+ done
 
 
 

@@ -11,7 +11,7 @@ mkdir ${make_dir}
 mkdir -p ${make_dir}
 chmod 770 ${make_dir}
 
-cat $file_Pointing_line | grep -v '^#.*' | while read source ra dec comments; do 
+cat $file_Pointing_line | grep -v '^#.*' | while read source ra dec comments; do
     tmp_scr=`printf ${original_scr} | awk ' BEGIN { FS="_";OFS="_" } { $3="'${source}'" } END { print $0 } '`
     tmp_scr=`basename $tmp_scr`
     #echo ${tmp_scr}
@@ -28,5 +28,5 @@ cat $file_Pointing_line | grep -v '^#.*' | while read source ra dec comments; do
         { print $0 }
         ' > $new_scr
 
-done    
+done
 

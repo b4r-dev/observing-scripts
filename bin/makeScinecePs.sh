@@ -11,8 +11,8 @@ echo Make all source and freq setting for ${original_scr} in ${make_dir}.
 mkdir -p ${make_dir}
 chmod 770 ${make_dir}
 
-cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comments; do 
-    cat $file_freq_set | grep -v '^#.*' | while read freqID line_freq IF_freq comments; do 
+cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comments; do
+    cat $file_freq_set | grep -v '^#.*' | while read freqID line_freq IF_freq comments; do
         if [ "${freqs}" = "${freqID}" ] ; then
             freqID2=`printf "%02d" $freqID`
             printf "making for %s: " $source
@@ -20,7 +20,7 @@ cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comme
             printf "line %.1f GHz: " $line_freq
             printf "IF %.1f GHz\n" $IF_freq
 
-            cont_or_spec=`printf ${original_scr} | awk 'BEGIN{FS="_";OFS="_"}{print $4}' | cut -c 1-4`       
+            cont_or_spec=`printf ${original_scr} | awk 'BEGIN{FS="_";OFS="_"}{print $4}' | cut -c 1-4`
             #echo ${cont_or_spec}
             cont_or_spec_freqID2=$cont_or_spec$freqID2
             #echo ${cont_or_spec_freqID2}
@@ -44,6 +44,6 @@ cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comme
                 ' > $new_scr
 
         fi
-    done    
- done 
- 
+    done
+ done
+
