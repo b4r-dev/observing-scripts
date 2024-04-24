@@ -1,0 +1,21 @@
+{
+    "name": "observing-scripts",
+    "image": "ubuntu:latest",
+    "runArgs": [
+        "--name=observing-scripts"
+    ],
+    "onCreateCommand": "apt update",
+    "postCreateCommand": "apt install -y git",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "github.vscode-pull-request-github",
+                "mhutchie.git-graph"
+            ],
+            "settings": {
+                "files.insertFinalNewline": true,
+                "files.trimTrailingWhitespace": true
+            }
+        }
+    }
+}
