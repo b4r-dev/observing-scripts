@@ -32,7 +32,7 @@ cat $file_Pointing_cont | grep -v '^#.*' | while read source ra dec comments; do
         #echo ${cont_or_spec}
         cont_or_spec_freqID2=$cont_or_spec$freqID2
         #echo ${cont_or_spec_freqID2}
-        tmp_scr=`printf ${original_scr} | awk ' BEGIN { FS="_";OFS="_" } { $4="'${cont_or_spec_freqID2}'" } { $3="'${source}'" } END { print $0 } '`
+        tmp_scr=`printf ${original_scr} | awk 'BEGIN { FS="_"; OFS="_" } { $4="'${cont_or_spec_freqID2}'"; $3="'${source}'"; print $0 }'`
         tmp_scr=`basename $tmp_scr`
         #echo ${tmp_scr}
         new_scr=./${make_dir}/${tmp_scr}

@@ -17,7 +17,7 @@ for scr in $@; do
     cont_or_spec=`printf $scr| awk 'BEGIN{FS="_";OFS="_"}{print $4}' | cut -c 1-4`
     cont_or_spec_freqID2=$cont_or_spec$freqID2
     #echo ${cont_or_spec_freqID2}
-    tmp_scr=`printf $scr| awk 'BEGIN{FS="_";OFS="_"}{$4="'${cont_or_spec_freqID2}'"}{print $0}'`
+    tmp_scr=`printf $scr| awk 'BEGIN { FS="_"; OFS="_" }{ $4="'${cont_or_spec_freqID2}'"; print $0 }'`
     tmp_scr=`basename $tmp_scr`
     new_scr=./${make_dir}/${tmp_scr}
     #echo $new_scr
