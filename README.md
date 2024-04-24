@@ -5,7 +5,7 @@ Templates and commands for making B4R observing scripts (*.scr)
 
 1. Update frequency settings in `catalog/`
 1. Update pointing/science lists in `catalog/`
-1. Run commands (`*.sh`) to create observing scripts
+1. Run commands (`*.sh`) to create observing scripts (in `products/`)
 
 ## Frequecy/source lists (`catalog/*.txt`; tab-separated)
 
