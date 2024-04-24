@@ -29,10 +29,4 @@ for scr in $@; do
         { print $0 }
         ' > $new_scr
     done
-
- done
-
-
-
-
-
+done

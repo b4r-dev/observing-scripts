@@ -49,6 +49,4 @@ cat $file_Pointing_cont | grep -v '^#.*' | while read source ra dec comments; do
             ' > $new_scr
 
     done
- done
-
-
+done

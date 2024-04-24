@@ -41,5 +41,4 @@ cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comme
 
         fi
     done
- done
-
+done

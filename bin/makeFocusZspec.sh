@@ -27,4 +27,3 @@ cat $file_Pointing_line | grep -v '^#.*' | while read source ra dec comments; do
         ' > $new_scr
 
 done
-
