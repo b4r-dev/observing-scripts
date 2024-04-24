@@ -9,7 +9,6 @@ original_freq_name=`echo ${original_scr} | awk 'BEGIN { FS="_"; OFS="_" } { prin
 make_dir=products/`basename $original_scr .scr`_all
 echo Make all source and freq setting for ${original_scr} in ${make_dir}.
 mkdir -p ${make_dir}
-chmod 770 ${make_dir}
 
 cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comments; do
     cat $file_freq_set | grep -v '^#.*' | while read freqID line_freq IF_freq comments; do
@@ -21,14 +20,10 @@ cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comme
             printf "IF %.1f GHz\n" $IF_freq
 
             cont_or_spec=`echo ${original_scr} | awk 'BEGIN { FS="_"; OFS="_" } { print $4 }' | cut -c 1-4`
-            #echo ${cont_or_spec}
             cont_or_spec_freqID2=$cont_or_spec$freqID2
-            #echo ${cont_or_spec_freqID2}
             tmp_scr=`echo ${original_scr} | awk 'BEGIN { FS="_"; OFS="_" } { $4="'${cont_or_spec_freqID2}'"; $3="'${source}'"; print $0 }'`
             tmp_scr=`basename $tmp_scr`
-            #echo ${tmp_scr}
             new_scr=./${make_dir}/${tmp_scr}
-            #echo $new_scr
 
             cat ${original_scr} | awk '
                 { for(i=1;i<=NF;i++) { if($i=="-If2Freq[0]") {$(i+1)="'${IF_freq}'"} } }
