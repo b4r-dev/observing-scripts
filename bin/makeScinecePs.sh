@@ -2,13 +2,13 @@
 
 file_freq_set='catalog/B4R_frequency_settings.txt'
 file_Science='catalog/B4R_Science_list.txt'
-original_scr='b4r_SciencePs_PJ020941.3_spec02_v01.scr'
+original_scr='templates/b4r_SciencePs_PJ020941.3_spec02_v01.scr'
 original_source_name=`printf ${original_scr} | awk ' BEGIN { FS="_";OFS="_" } { print $3 }'`
 original_freq_name=`printf ${original_scr} | awk ' BEGIN { FS="_";OFS="_" } { print $4 }'`
 
-make_dir="`basename $original_scr .scr`"_all
+make_dir=products/`basename $original_scr .scr`_all
 echo Make all source and freq setting for ${original_scr} in ${make_dir}.
-mkdir ${make_dir}
+mkdir -p ${make_dir}
 chmod 770 ${make_dir}
 
 cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comments; do 
@@ -25,6 +25,7 @@ cat $file_Science | grep -v '^#.*' | while read source ra dec vlsr z freqs comme
             cont_or_spec_freqID2=$cont_or_spec$freqID2
             #echo ${cont_or_spec_freqID2}
             tmp_scr=`printf ${original_scr} | awk ' BEGIN { FS="_";OFS="_" } { $4="'${cont_or_spec_freqID2}'" } { $3="'${source}'" } END { print $0 } '`
+            tmp_scr=`basename $tmp_scr`
             #echo ${tmp_scr}
             new_scr=./${make_dir}/${tmp_scr}
             #echo $new_scr
