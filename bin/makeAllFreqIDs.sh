@@ -3,7 +3,7 @@
 file_freq_set='catalog/B4R_frequency_settings.txt'
 
 for scr in $@; do
-    original_freq_name=`printf ${scr} | awk ' BEGIN { FS="_";OFS="_" } { print $4 }'`
+    original_freq_name=`echo ${scr} | awk 'BEGIN { FS="_"; OFS="_" } { print $4 }'`
     make_dir=products/`basename $scr .scr`_allFreqs
     echo Make all freq setting for ${scr} in ${make_dir}.
     mkdir -p ${make_dir}
@@ -14,10 +14,10 @@ for scr in $@; do
         printf "makeing for freqID %s " $freqID2
         printf "line %.1f GHz " $line_freq
         printf "IF %.1f GHz\n" $IF_freq
-    cont_or_spec=`printf $scr| awk 'BEGIN{FS="_";OFS="_"}{print $4}' | cut -c 1-4`
+    cont_or_spec=`echo $scr | awk 'BEGIN { FS="_"; OFS="_" } { print $4 }' | cut -c 1-4`
     cont_or_spec_freqID2=$cont_or_spec$freqID2
     #echo ${cont_or_spec_freqID2}
-    tmp_scr=`printf $scr| awk 'BEGIN { FS="_"; OFS="_" }{ $4="'${cont_or_spec_freqID2}'"; print $0 }'`
+    tmp_scr=`echo $scr | awk 'BEGIN { FS="_"; OFS="_" }{ $4="'${cont_or_spec_freqID2}'"; print $0 }'`
     tmp_scr=`basename $tmp_scr`
     new_scr=./${make_dir}/${tmp_scr}
     #echo $new_scr
